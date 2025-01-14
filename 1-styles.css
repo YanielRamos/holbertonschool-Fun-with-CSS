@@ -1,0 +1,24 @@
+
+a {
+    position: relative; /* Ensure the pseudo-element is positioned relative to the link */
+    color: red;
+    text-decoration: none;
+}
+
+a::after {
+    content: ''; /* Creates an empty element after the link text */
+    position: absolute; /* Positions the element relative to the <a> tag */
+    bottom: 0; /* Position the pseudo-element at the bottom of the <a> */
+    left: 0; /* Start the pseudo-element at the left edge of the <a> */
+    width: 100%; /* Make the pseudo-element as wide as the <a> tag */
+    height: 2px; /* Set the height of the underline (2px tall) */
+    background-color: red; /* Set the color of the underline to red */
+    transform: scaleX(0); /* Initially, the underline is collapsed (width = 0) */
+    transform-origin: bottom right; /* The scaling will happen from the bottom-right corner */
+    transition: transform 0.3s ease; /* Smooth animation of the scaleX transformation */
+}
+  
+  a:hover::after {
+    transform: scaleX(1); /* On hover, the underline is revealed from right to left */
+    transform-origin: bottom left; /* Change the origin point to animate from left */
+  }
