@@ -1,0 +1,211 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+html {
+    background: grey;
+}
+
+body {
+    margin: 20px; /* creating space between the body and the edge of the browser */
+}
+
+/* styling the button */
+.menu-open-button { 
+    display: block; /* making the button a block element */
+    width: 60px;
+    height: 60px;
+    background: #e1003c;
+    border-radius: 50%;
+    position: relative; /* positioning the button */
+    cursor: pointer;
+    user-select: none; /* preventing the button from being selected */
+    margin-bottom: 20px; /* creating space between the button and the next element */
+    transition: 0.3s;
+}
+
+/* changing the button when hovering */
+.menu-open-button:hover {
+    transform: scale(1.2); /* makes the button bigger when hovering */
+    transition: transform .3s ease-in-out; /* adding the effect how fast the button gets bigger */
+}
+
+/* styling the lines of the button */
+.menu-line {
+    background: white;
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    height: 2px;
+    transition: transform 0.5s ease;
+}
+
+/* positioning the lines of the button */
+.menu-line-1 {
+    top: 20px;
+}
+
+.menu-line-2 {
+    top: 29px;
+}
+
+.menu-line-3 {
+    top: 38px;
+}
+
+/* do a X with the lines of the button when the button is checked */
+.menu-open:checked + .menu-open-button .menu-line-1 {
+    transform: translateY(9px) rotate(45deg);
+}
+
+/* make the second line of the button disappear when the button is checked */
+.menu-open:checked + .menu-open-button .menu-line-2 {
+    opacity: 0;
+}
+
+/* do a X with the lines of the button when the button is checked */
+.menu-open:checked + .menu-open-button .menu-line-3 {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* styling the menu items */
+.menu-item {
+    display: none; /* hiding the menu items */
+    background: #e1003c;
+    position: relative; 
+    color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    justify-content: center; /* centering the content */
+    align-items: center; /* centering the items */
+    text-align: center; /* centering the text */
+    transform: translateY(0); /* moving the items */
+    opacity: 0; /* making the items invisible */
+    transition: transform 0.5s ease, opacity 0.5s ease; /* adding the effect how fast the items appear */
+    margin-bottom: 20px;
+}
+
+/* creating motion effect on elementsto appear when button is checked */
+@keyframes iconPop {
+    0% { /* Animation starting point */
+        transform: scale(1) translateY(var(--translateY)); /* elements with vertical offset */
+        opacity: 0; /* making the items invisible */
+    }
+    50% { /* middle point */
+        opacity: 1; /* making the items visible */
+    }
+    100% { /* Animation end point */
+        transform: scale(1) translateY(0); /*normal size and element going to his original position*/
+        opacity: 1;
+    }
+}
+
+/* creating motion effect on elements to disappear when button is unchecked */
+@keyframes iconPopReverse {
+    0% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1) translateY(var(--translateY));
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1) translateY(var(--translateY));
+        opacity: 0;
+    }
+}
+
+/* making the menu items appear when the button is checked */
+.menu-open:checked ~ a {
+    display: flex;
+    text-decoration: none;
+    animation: iconPop 0.5s ease-out forwards;
+}
+
+/* making the menu items disappear when the button is unchecked */
+.menu-open:not(:checked) ~ a {
+    display: flex;
+    text-decoration: none;
+    animation: iconPopReverse 0.05s ease-out backwards;
+}
+
+/* creating space between the menu items */
+.menu-open:checked ~ a:nth-child(2) {
+    --translateY: -50px;
+    animation-delay: 0.05s;  
+}
+
+.menu-open:not(:checked) ~ a:nth-child(2) {
+    --translateY: -50px;
+    animation-delay: 0.3s;  
+}
+
+.menu-open:checked ~ a:nth-child(3) {
+    --translateY: -40px;
+    animation-delay: 0.1s;  
+}
+
+.menu-open:not(:checked) ~ a:nth-child(3) {
+    --translateY: -50px;
+    animation-delay: 0.25s;  
+}
+
+.menu-open:checked ~ a:nth-child(4) {
+    --translateY: -30px;
+    animation-delay: 0.15s;  
+}
+
+.menu-open:not(:checked) ~ a:nth-child(4) {
+    --translateY: -50px;
+    animation-delay: 0.2s;  
+}
+
+.menu-open:checked ~ a:nth-child(5) {
+    --translateY: -20px;
+    animation-delay: 0.2s;  
+}
+
+.menu-open:not(:checked) ~ a:nth-child(5) {
+    --translateY: -50px;
+    animation-delay: 0.15s;  
+}
+
+.menu-open:checked ~ a:nth-child(6) {
+    --translateY: -10px;
+    animation-delay: 0.25s;  
+}
+
+.menu-open:not(:checked) ~ a:nth-child(6) {
+    --translateY: -50px;
+    animation-delay: 0.1s;  
+}
+
+.menu-open:checked ~ a:nth-child(7) {
+    --translateY: -10px;
+    animation-delay: 0.3s;  
+}
+.menu-open:not(:checked) ~ a:nth-child(7) {
+    --translateY: -50px;
+    animation-delay: 0.05s;  
+}
+
+.menu-item:hover {
+    background-color: #fff;
+    color: #e1003c; 
+    border: #e1003c solid 1px;
+}
+
+.menu-item:hover i {
+    color: #e1003c; 
+}
+
+.menu-item i {
+    color: #fff;
+    font-size: 24px; 
+}
+
+.menu-open {
+    display: none;
+}
